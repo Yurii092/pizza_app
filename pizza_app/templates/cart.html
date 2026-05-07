@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Ваш кошик – Піца</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>🛒 Ваш кошик</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">⬅ Назад до меню</a>
+        </nav>
+    </header>
+
+    <main>
+        {% if cart %}
+        <ul>
+            {% for item in cart %}
+            <li>{{ item.icon }} {{ item.name }} – {{ item.price }} грн</li>
+            {% endfor %}
+        </ul>
+        <h3>Разом: {{ total }} грн</h3>
+        <a href="{{ url_for('clear_cart') }}">Очистити кошик</a>
+        {% else %}
+        <p>Кошик порожній (замовте піцу!).</p>
+        {% endif %}
+    </main>
+</body>
+</html>
